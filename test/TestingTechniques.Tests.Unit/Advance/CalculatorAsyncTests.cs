@@ -3,7 +3,7 @@ using Xunit.Abstractions;
 
 namespace TestingTechniques.Tests.Unit.Advance;
 
-//We implement IAsyncLifetime interface to have the async dispose and initialize
+//We implement IAsyncLifetime interface to have the async dispose and initialize (so async setup and cleanup)
 public class CalculatorAsyncTests : IAsyncLifetime
 {
     //Order:
@@ -45,6 +45,10 @@ public class CalculatorAsyncTests : IAsyncLifetime
         _outputHelper.WriteLine("Hello from the Subtract test");
     }
 
+    /// <summary>
+    /// This is a method from IAsyncLifetime. It is used to make some async cleanup
+    /// </summary>
+    /// <returns></returns>
     public async Task DisposeAsync()
     {
         _outputHelper.WriteLine("Hello from async clean-up");
@@ -52,7 +56,7 @@ public class CalculatorAsyncTests : IAsyncLifetime
     }
 
     /// <summary>
-    /// This is a method from IAsyncLifetime. It is used to make some initial setups
+    /// This is a method from IAsyncLifetime. It is used to make some async initial setups
     /// </summary>
     /// <returns></returns>
     public async Task InitializeAsync()

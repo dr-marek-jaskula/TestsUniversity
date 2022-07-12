@@ -4,6 +4,9 @@ namespace TestingTechniques.Tests.Unit.Basics;
 
 //This file was introduced to learn how to assert: properties (public, internal), exceptions, collection, objects, etc.
 
+//To examine how to test void method,
+//For instance a log, go to: GetAllAsync_ShouldLogMessages_WhenInvoked() in UserServicesTests
+
 public class ValueSamplesTests
 {
     private readonly ValueSamples _sut = new();

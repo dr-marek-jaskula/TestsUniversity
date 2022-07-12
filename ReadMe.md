@@ -2,7 +2,7 @@
 
 Two directories: src, test:
 - src should contain all projects
-- test should contain all test projects
+- tests should contain all test projects
 
 In test directory two logical (not physical) directories:
 - Unit
