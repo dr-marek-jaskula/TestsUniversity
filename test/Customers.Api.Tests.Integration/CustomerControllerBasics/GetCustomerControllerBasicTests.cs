@@ -2,10 +2,11 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
+using Customers.Api.Tests.Integration.Collections;
 
 namespace Customers.Api.Tests.Integration.CustomerControllerBasic;
 
-[Collection("CustomerControllerBasicCollection")]
+[Collection(CollectionNames.Customer_Basic_Controller_Collection)]
 public class GetCustomerControllerBasicTests
 {
     private readonly HttpClient _httpClient;

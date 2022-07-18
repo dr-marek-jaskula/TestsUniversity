@@ -1,18 +1,18 @@
-﻿## End-to-End tests
+﻿## UI tests
 
-/We still need to add certificate
+!! We still need to add certificate
 
-[They are integration UI tests?]
-
-For End-to-End tests (UI tests) we will be using:
-- WireMock
-- Microsoft.Playwright (a bot that goes to the website and clicks, for opening the browser by c#)
+For UI tests we will be using:
+- WireMock (to mock external apis like GitHub)
+- Microsoft.Playwright (a bot that goes to the website and clicks. I enables opening and use the browser by c#)
 - Creating app in a docker container 
 - Ductus.FluentDocker (to fluently use docker for UI tests with playwright) - this allows to use docker-compose file from c# code
 
-We want use WebApplicationFactory for this but a playwright (we cannot called the in memory version running by playwright)
-Therefore, we will use docker
-One docker-compose file for all tests
+We will not use WebApplicationFactory for here but a playwright 
+Nevertheless, we cannot called the in memory version running by playwright
+Therefore, we will use docker approach
+
+One docker-compose file for all tests will be created
 
 ## Playwright
 
@@ -20,12 +20,11 @@ One docker-compose file for all tests
 2. Build the project (Playwright will install the installation script when project builds)
 3. Open terminal and write:
 pwsh .\bin\Debug\net6.0\playwright.ps1
-this will install some stuff
+This will install some stuff. !! If the stuff is not installed use (this is better):
+pwsh bin\Debug\net6.0\playwright.ps1 install
+
 We can also do it by c# code:
 Microsoft.Playwright.Program.Main(new[] { "install" });
-
-//Be sure it is installed (coz one time it does not). This is valid
-pwsh bin\Debug\net6.0\playwright.ps1 install
 
 ## Docker helthcech:
 

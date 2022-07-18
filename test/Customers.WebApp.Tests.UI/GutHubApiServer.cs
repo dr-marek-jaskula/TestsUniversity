@@ -3,12 +3,14 @@ using WireMock.ResponseBuilders;
 using WireMock.Server;
 
 namespace Customers.WebApp.Tests.UI;
-//this is the same as in other project. Only the port is different
+
+//This is the same as in Customer.Api.Tests.Integration project. The only different part is the port 
 public class GitHubApiServer : IDisposable
 {
     private WireMockServer _server;
     public string Url => _server.Url!;
-    //The one change
+
+    //The one change. The docker port for github (same as in docker-compose-UI.yml) needs to be specified
     private const int dockerPort = 9850;
 
     public void Start()

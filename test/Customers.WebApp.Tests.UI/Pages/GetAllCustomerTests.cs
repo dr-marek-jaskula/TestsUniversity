@@ -5,7 +5,7 @@ using Microsoft.Playwright;
 
 namespace Customers.WebApp.Tests.UI.Pages;
 
-[Collection("UI test collection")]
+[Collection(CollectionNames.UI_TestsCollection)]
 public class GetAllCustomerTests
 {
     private readonly SharedTestContext _testContext;

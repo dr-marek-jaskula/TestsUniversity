@@ -1,13 +1,14 @@
 ﻿using Bogus;
 using Customers.Api.Contracts.Requests;
 using Customers.Api.Contracts.Responses;
+using Customers.Api.Tests.Integration.Collections;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http.Json;
 
 namespace Customers.Api.Tests.Integration.CustomerController;
 
-[Collection("CustomerControllerTestCollection")]
+[Collection(CollectionNames.Customer_Controller_Collection)]
 public class UpdateCustomerControllerTests
 {
     private readonly CustomerApiFactory _apiFactory;

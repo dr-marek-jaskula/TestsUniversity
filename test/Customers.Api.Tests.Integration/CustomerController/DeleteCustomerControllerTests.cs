@@ -3,10 +3,11 @@ using System.Net.Http.Json;
 using Bogus;
 using Customers.Api.Contracts.Requests;
 using Customers.Api.Contracts.Responses;
+using Customers.Api.Tests.Integration.Collections;
 
 namespace Customers.Api.Tests.Integration.CustomerController;
 
-[Collection("CustomerControllerTestCollection")]
+[Collection(CollectionNames.Customer_Controller_Collection)]
 public class DeleteCustomerControllerTests
 {
     private readonly HttpClient _client;

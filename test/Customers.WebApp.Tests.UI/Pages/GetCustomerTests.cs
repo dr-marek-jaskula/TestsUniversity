@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Customers.WebApp.Tests.UI.Pages;
 
-[Collection("UI test collection")]
+[Collection(CollectionNames.UI_TestsCollection)]
 public class GetCustomerTests
 {
     //This will be injected by a collection

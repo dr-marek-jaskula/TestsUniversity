@@ -4,10 +4,11 @@ using Bogus;
 using Customers.Api.Contracts.Requests;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
+using Customers.Api.Tests.Integration.Collections;
 
 namespace Customers.Api.Tests.Integration.CustomerControllerBasic;
 
-[Collection("CustomerControllerBasicCollection")]
+[Collection(CollectionNames.Customer_Basic_Controller_Collection)]
 public class CreateCustomerControllerBasicTests : IAsyncLifetime
 {
     private readonly HttpClient _httpClient;

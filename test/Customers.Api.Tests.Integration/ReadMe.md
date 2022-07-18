@@ -21,29 +21,34 @@ To run integration tests with a docker containers we will use the NuGet Package:
 There is currently a bug in the latest version of Docker.DotNet which is maintained by Microsoft and the latest version of Docker Desktop (4.10) which will prevent you from running your tests.
 A fix has been submitted so it is a matter of time until Microsoft adds it in.
 In the meantime I suggest downgrading to Docker Desktop version  4.9.1. 
-The Docker Docker Desktop 4.10.1 is still not working
-Therfore, I have downgraded to Docker Desktop 4.9.1
+The Docker Desktop 4.10.1 is still not working
+
+Therefore, I have downgraded to Docker Desktop 4.9.1
 
 ## Naming convention
 
-Get_ReturnsNotFound_WhenCustomerDoesNotExist
+Get_ShouldReturnNotFound_WhenCustomerDoesNotExist
 
 ## Structure the test classes
 
 Do not use one class, for instance "CustomerControllerTests" for all tests in this controller.
 
 It is good practice to differentiate the Get, Create, Update, Delete actions into different test classes.
-Nevertheless, the state should be shared between all these classes (so single in memory app should run for all of them)
+Nevertheless, the state should be shared between all these classes.
 
-In order to do that we create a "TestCollection.cs" file with a collection definition that implements 
+In order to do this we create a "TestCollection.cs" file with a collection definition that implements:
 ICollectionFixture<TypeWeWantToBeFixInACollection>
+
 The collection definition name is important. 
-The test classes needs to decorated with an attribute "Collection" with a specific name. Then, the type is shared
-to all test classes
+
+The test classes needs to decorated with an attribute "Collection" with a specific name. 
+Then, the type is shared to all test classes.
 
 ## Generate a certificate
 
-in a project folder
+Certificate is important for container to be verified as safe
+
+In a project folder write:
 dotnet dev-certs https -ep cert.pfx -p Test1234!
 
 This is from docker-compose:
@@ -90,7 +95,7 @@ wireMockServer
 Console.ReadKey();
 wireMockServer.Dispose();
 
-And use it to simulate responses for given requsts (for instance it was "http://localhost:65012/example" because 
+And use it to simulate responses for given requests (for instance it was "http://localhost:65012/example" because 
 wireMockServer.Url was equal to "http://localhost:65012")
 
 #### Good approach:
@@ -106,6 +111,5 @@ Add class to integration test that will simulate the response from the api (here
 If we use Entity Framework Core then NEVER replace build in Entity Framework dbContext with a in memory one.
 NEVER, NEVER do this. This killing the integration point of view. It does not test the right database.
 Then, it behaves in a completely different way (different queries and other).
-NEVER to this.
 
 Look at the bottom of the CustomerApiFactory for a proper way

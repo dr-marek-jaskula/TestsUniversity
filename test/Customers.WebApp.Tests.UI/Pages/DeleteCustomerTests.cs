@@ -5,7 +5,7 @@ using Microsoft.Playwright;
 
 namespace Customers.WebApp.Tests.UI.Pages;
 
-[Collection("UI test collection")]
+[Collection(CollectionNames.UI_TestsCollection)]
 public class DeleteCustomerTests
 {
     private readonly SharedTestContext _testContext;

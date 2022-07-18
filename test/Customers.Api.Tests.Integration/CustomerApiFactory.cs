@@ -12,7 +12,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
-namespace Customers.Api.Tests.Integration.CustomerController;
+namespace Customers.Api.Tests.Integration;
+
+//This is a factory used for crating an api that is under tests in a way we want to:
+//So we can delete some services and add others (for testing purposes)
+//Moreover, we override the connection strings, for instance to connect to the docker container
+//We also use the WireMock to mock external services (GitHub is mocked here)
+//So we have an initialization and the cleanup 
 
 //We derive from WebApplicationFactory<IApiMarker> in order to override all that we want about the app logic
 //This give much control: over the database and github integration point
@@ -50,7 +56,7 @@ public class CustomerApiFactory : WebApplicationFactory<IApiMarker>, IAsyncLifet
     //this will run on a random port, but it will match the ports (random port is important, due to many tests)
 
     //Here we will add a fake GitHubServer for fake responses
-    private readonly GitHubApiServer _gitHubApiServer = new(); 
+    private readonly GitHubApiServer _gitHubApiServer = new();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -78,7 +84,7 @@ public class CustomerApiFactory : WebApplicationFactory<IApiMarker>, IAsyncLifet
             services.RemoveAll(typeof(IDbConnectionFactory));
             //2. We add new connection factory with a valid test connection string
             //The port is the Host Port is the external one (so just change the port)
-            
+
             services.AddSingleton<IDbConnectionFactory>(_ =>
                 new NpgsqlConnectionFactory(_dbContainer.ConnectionString));
 
