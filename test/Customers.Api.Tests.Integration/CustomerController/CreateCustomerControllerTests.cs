@@ -2,19 +2,15 @@
 using Customers.Api.Contracts.Requests;
 using Customers.Api.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace Customers.Api.Tests.Integration.CustomerController;
 
 [Collection("CustomerControllerTestCollection")]
 public class CreateCustomerControllerTests
 {
-    //This apiFactory is injected by xUnit. 
+    //This apiFactory is injected by xUnit.
     //One instance per whole collection
     private readonly CustomerApiFactory _apiFactory;
 
@@ -37,7 +33,7 @@ public class CreateCustomerControllerTests
     [Fact]
     public async Task Create_ShouldCreateUser_WhenDataIsValid()
     {
-        //Arrange 
+        //Arrange
         var customer = _customerGenerator.Generate();
 
         //Act
@@ -92,12 +88,12 @@ public class CreateCustomerControllerTests
         error!.Errors["GitHubUsername"][0].Should().Be($"There is no GitHub user with username {invalidGitHubUser}");
     }
 
-    //Tests for a throttled user 
-    //Api we test handlers the throttle user in a bad way, but nevetherless we will write a code to deal with it
+    //Tests for a throttled user
+    //Api we test handlers the throttle user in a bad way, but nevertheless we will write a code to deal with it
     [Fact]
     public async Task Create_ShouldReturnInternalServerError_WhenGitHubIsThrottled()
     {
-        //Arrange 
+        //Arrange
         var customer = _customerGenerator.Clone()
             .RuleFor(x => x.GitHubUsername, CustomerApiFactory.ThrottledUser)
             .Generate();

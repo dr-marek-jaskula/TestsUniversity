@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Net;
+﻿using System.Net;
+using System.Collections;
 
 namespace Customers.Api.Tests.Integration;
 
@@ -39,10 +39,6 @@ public class CustomerControllerBasicsTests : IAsyncLifetime, IDisposable
 
     [Theory(Skip = "This is a way without WebApplicationFactory")] //We can skip all the tests on a theory level
     [ClassData(typeof(ClassData))]
-    //[MemberData(nameof(Data))]
-    //[InlineData("8bffe86e-d14c-426c-8ae3-43ee06fbdab0")]
-    //[InlineData("bd4fb277-5b97-40a6-837d-b027998b705e")]
-    //[InlineData("e1608bd8-aeb3-4af9-bb35-eb43ed0d3667")]
     public async Task Get_ReturnsNotFound_WhenCustomerDoesNotExist2(string guidAsText)
     {
         //Act
