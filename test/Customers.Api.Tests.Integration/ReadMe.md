@@ -25,6 +25,8 @@ The Docker Desktop 4.10.1 is still not working
 
 Therefore, I have downgraded to Docker Desktop 4.9.1
 
+Probably the issue has been fix.
+
 ## Naming convention
 
 Get_ShouldReturnNotFound_WhenCustomerDoesNotExist

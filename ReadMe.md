@@ -21,19 +21,29 @@ In test directory two logical (not physical) directories:
 Naming conventions: 
 
 Unit tests projects:
+```
 <ProjectNameToTest>.Tests.Unit
+```
 
 Integration tests projects:
+```
 <ProjectNameToTest>.Tests.Integration
+```
 
 Test classes:
+```
 <ClassNameToTest>Tests
+```
 
 Systems under tests (private readonly fields):
+```
 _sut
+```
 
 Test methods:
+```
 <MethodNameToTest>_Should<ExpectedBehavior>_When<TestScenario>
+```
 
 ## What should be unit tested
 
@@ -50,9 +60,11 @@ Moreover:
 Use comments to structure sections "Arrange", "Act", "Assert".
 
 To expose internals to the test project add in a project file the following code:
+```
 <ItemGroup>
 	<InternalsVisibleTo Include="<TestProjectName>"/>
 </ItemGroup>
+```
 
 Use implicit (global) using for:
 - xUnit
@@ -68,4 +80,6 @@ Try not to hard code values in test methods. It is better to hard code them at t
 ## Test Parallelism
 
 In order to disable parallelization, so make that every test in the project will run one after another use:
+```csharp
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
+```
