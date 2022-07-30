@@ -66,6 +66,13 @@ To expose internals to the test project add in a project file the following code
 </ItemGroup>
 ```
 
+We can also use the parameterization 
+```
+<ItemGroup>
+	<InternalsVisibleTo Include="$(AssemblyName).Tests.Unit"/>
+</ItemGroup>
+```
+
 Use implicit (global) using for:
 - xUnit
 - ProjectToTest main namespace

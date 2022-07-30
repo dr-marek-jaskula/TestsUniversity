@@ -10,12 +10,11 @@ public class UserService : IUserService
     private readonly IUserRepository _userRepository;
     private readonly ILoggerAdapter<UserService> _logger;
 
-    public UserService(IUserRepository userRepository,
-        ILoggerAdapter<UserService> logger)
+    public UserService(IUserRepository userRepository, ILoggerAdapter<UserService> logger)
     {
         _userRepository = userRepository;
         _logger = logger;
-    }
+    } 
 
     public async Task<IEnumerable<User>> GetAllAsync()
     {

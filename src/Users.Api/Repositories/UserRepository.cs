@@ -9,8 +9,7 @@ public class UserRepository : IUserRepository
 {
     private readonly ISqliteDbConnectionFactory _connectionFactory;
 
-    public UserRepository(
-        ISqliteDbConnectionFactory connectionFactory)
+    public UserRepository(ISqliteDbConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
