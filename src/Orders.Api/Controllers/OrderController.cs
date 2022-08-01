@@ -32,7 +32,7 @@ public class OrderController : ControllerBase
     }
 
     /// <summary>
-    /// Get paginated orders 
+    /// Get paginated orders. For SortBy choose "Name" or "Amount"
     /// </summary>
     /// <param name="query">Pagination parameters</param>
     /// <returns>Collection of Orders</returns>

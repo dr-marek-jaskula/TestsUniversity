@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Orders.Api.DbModels;
 using Orders.Api.Exceptions;
 using Orders.Api.MapperProfiles;
+using Orders.Api.Models.DataTransferObjects;
 using Orders.Api.Services;
 
 namespace Orders.Api.Tests.Unit;
@@ -27,13 +28,7 @@ public class OrderServiceTestsInMemoryDatabase : IAsyncLifetime
         var actual = await _sut.GetById(1);
 
         //Assert
-        actual.Should().BeEquivalentTo(new Order
-        {
-            Id = 1,
-            Name = "balloon1",
-            Amount = 1,
-            Deadline = _date.AddDays(1)
-        });
+        actual.Should().BeEquivalentTo(new OrderDto(1, "balloon1", 1, _date.AddDays(1)));
     }
 
     [Fact]
