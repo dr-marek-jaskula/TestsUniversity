@@ -1,0 +1,7 @@
+﻿{
+  Id: Guid_1,
+  GitHubUsername: validuser,
+  FullName: Juana O'Conner,
+  Email: Juana.OConner@hotmail.com,
+  DateOfBirth: DateTime_1
+}

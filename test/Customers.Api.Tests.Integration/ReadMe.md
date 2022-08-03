@@ -115,3 +115,8 @@ NEVER, NEVER do this. This killing the integration point of view. It does not te
 Then, it behaves in a completely different way (different queries and other).
 
 Look at the bottom of the CustomerApiFactory for a proper way
+
+## Snapshop testing
+
+We use the Verify.Xunit NuGet Package. 
+Snapshot testing is introduced in "Customer.Api.Tests.Integration" -> SnapshotTesting

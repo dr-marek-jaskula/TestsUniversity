@@ -1,0 +1,7 @@
+﻿{
+  Id: Guid_1,
+  GitHubUsername: validuser,
+  FullName: Timothy Heathcote,
+  Email: Timothy14@yahoo.com,
+  DateOfBirth: DateTime_1
+}

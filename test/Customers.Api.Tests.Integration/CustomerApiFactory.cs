@@ -1,4 +1,5 @@
-﻿using Customers.Api.Database;
+﻿using Bogus;
+using Customers.Api.Database;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Configurations;
 using DotNet.Testcontainers.Containers;
@@ -57,6 +58,14 @@ public class CustomerApiFactory : WebApplicationFactory<IApiMarker>, IAsyncLifet
 
     //Here we will add a fake GitHubServer for fake responses
     private readonly GitHubApiServer _gitHubApiServer = new();
+
+    //For snapshot testing
+    public CustomerApiFactory()
+    {
+        Randomizer.Seed = new Random(420);
+        //Guids tend to change per test execution. Therefore, we scrub them
+        VerifierSettings.ScrubInlineGuids();
+    }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
