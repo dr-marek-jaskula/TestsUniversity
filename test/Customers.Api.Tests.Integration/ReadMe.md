@@ -120,3 +120,6 @@ Look at the bottom of the CustomerApiFactory for a proper way
 
 We use the Verify.Xunit NuGet Package. 
 Snapshot testing is introduced in "Customer.Api.Tests.Integration" -> SnapshotTesting
+
+All .verified. files should be committed to source control.
+All .received. files should be excluded from source control.

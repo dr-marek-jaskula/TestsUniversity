@@ -2,6 +2,7 @@
 using Customers.Api.Contracts.Requests;
 using Customers.Api.Contracts.Responses;
 using Customers.Api.Tests.Integration.Collections;
+using NSubstitute.Core;
 using System.Net.Http.Json;
 
 namespace Customers.Api.Tests.Integration.CustomerController;
@@ -25,7 +26,9 @@ namespace Customers.Api.Tests.Integration.CustomerController;
 //"CreateCustomerControllerShapshotTests.Create_ShouldCreateUser_WhenDataIsValid.received"
 //The accepted one is:
 //"CreateCustomerControllerShapshotTests.Create_ShouldCreateUser_WhenDataIsValid.verified"
-//We should include these received and verified to git
+
+//All .verified. files should be committed to source control.
+//All .received.files should be excluded from source control.
 
 //This package can be used for instance to verifying:
 //Image
