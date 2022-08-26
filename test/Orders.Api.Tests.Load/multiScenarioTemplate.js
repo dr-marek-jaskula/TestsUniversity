@@ -16,12 +16,12 @@ var ReadTrend = new Trend('ReadTrend');
 
 const ExecutionType = 
 {
-    load:           'load',
-    smoke:          'smoke',
-    stress:         'stress',
-    soak:           'soak',
-    spike:          'spike',
-    performance:    'performance'
+    smoke:          'smoke', //It is a regular load test, configured for minimal load. Run a smoke test to check every if the script is ok and system does not throw any errors.
+    load:           'load', //Load Testing is a type of Performance Testing used to determine a system's behavior under both normal conditions.
+    stress:         'stress', //Stress Testing is a type of load testing used to determine the limits of the system. The purpose of this test is to verify the stability and reliability of the system under extreme conditions.
+    soak:           'soak', //Soak testing is concerned with reliability over a longer period of time.
+    spike:          'spike', //Test api when requests rapidly increses for a short period of time and then rapidly decreses to the previous request amount
+    performance:    'performance' //This is my custom performance that that suits my performance testing requirements in a development stage
 }
 
 var ExecutionScenarios;
@@ -39,7 +39,7 @@ switch(Execution)
                 executor: 'ramping-arrival-rate', //If you need your tests to not be affected by the system-under-test's performance, and would like to ramp the number of iterations up or down during specific periods of time.
                 startTime: '0s', //Time offset since the start of the test, at which point this scenario should begin execution.
                 startRate: 1, //Number of iterations to execute each second (timeUnit is "1s" by default)
-                preAllocatedVUs: 4, //Number of VUs to pre-allocate before test start to preserve runtime resources.
+                preAllocatedVUs: 4, //Number of VUs to pre-allocate before test start to preserve runtime resources. We should have at least some
                 stages: //Array of objects that specify the target number of iterations to ramp up or down to.
                 [
                     { duration: '30s', target: 1},
@@ -169,7 +169,7 @@ switch(Execution)
                 executor: 'ramping-arrival-rate',
                 startTime: '0s',
                 startRate: 1,
-                preAllocatedVUs: 0,
+                preAllocatedVUs: 2000,
                 stages: 
                 [
                     { duration: '10s', target: 100},
@@ -259,7 +259,7 @@ function formatDate(date)
     return (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;
 }
 
-function LogInDebugMode(textToLog)
+function logInDebugMode(textToLog)
 {
     if (DEBUG)
     {
@@ -280,12 +280,12 @@ export function ReadTests(authToken)
 
     const isSuccessfulRequest = check(response, 
     {
-        "Document request succeed": () => response.status == 200
+        "Document request succeed": () => response.status == 200 //Ok
     });
 
     if (isSuccessfulRequest)
     {
-        LogInDebugMode(`response.body: ${response.body}`)
+        logInDebugMode(`response.body: ${response.body}`)
         ReadTrend.add(response.timings.duration);
         ReadCounter.add(1);
         let body = JSON.parse(response.body);
@@ -334,7 +334,7 @@ export function CreateUpdateDeleteTests(authToken)
         } 
         else 
         {
-            LogInDebugMode(`Unable to create a Croc ${createResponse.status} ${createResponse.body}`);
+            logInDebugMode(`Unable to create a Croc ${createResponse.status} ${createResponse.body}`);
             return;
         }
     });
@@ -353,7 +353,7 @@ export function CreateUpdateDeleteTests(authToken)
 
         if (!isSuccessfulUpdate) 
         {
-            LogInDebugMode(`Unable to update the croc ${updateResponse.status} ${updateResponse.body}`);
+            logInDebugMode(`Unable to update the croc ${updateResponse.status} ${updateResponse.body}`);
             return;
         }
     });
@@ -362,12 +362,12 @@ export function CreateUpdateDeleteTests(authToken)
 
     const isSuccessfulDelete = check(null, 
     {
-        'Croc was deleted correctly': () => deleteResponse.status === 204,
+        'Croc was deleted correctly': () => deleteResponse.status === 204, //NoContent
     });
 
     if (!isSuccessfulDelete) 
     {
-        LogInDebugMode(`Croc was not deleted properly`);
+        logInDebugMode(`Croc was not deleted properly`);
         return;
     }
     });
@@ -378,12 +378,12 @@ export function CreateUpdateDeleteTests(authToken)
 // setup configuration
 export function setup() 
 {
-    LogInDebugMode(`==========================SETUP BEGINS==========================`)
+    logInDebugMode(`==========================SETUP BEGINS==========================`)
     // log the date & time start of the test
-    LogInDebugMode(`Start of test: ${formatDate(new Date())}`)
+    logInDebugMode(`Start of test: ${formatDate(new Date())}`)
 
     // log the test type
-    LogInDebugMode(`Test executed: ${Execution}`)
+    logInDebugMode(`Test executed: ${Execution}`)
 
     // register a new user and authenticate via a Bearer token.
     let response = http.post(`${BASE_URL}/user/register/`, 
@@ -396,18 +396,18 @@ export function setup()
   
     const isSuccessfulRequest = check(response, 
     { 
-        'created user': (r) => r.status === 201 //201 = created
+        'created user': (r) => r.status === 201 //Created
     }); 
   
     if (isSuccessfulRequest)
     {
-        LogInDebugMode(`The user ${USERNAME} was created successfully!`);
+        logInDebugMode(`The user ${USERNAME} was created successfully!`);
     }
     else 
     {
-        LogInDebugMode(`There was a problem creating the user ${USERNAME}. It might be existing, so please modify it on the executor bat file`);
-        LogInDebugMode(`The http status is ${response.status}`);        
-        LogInDebugMode(`The http error is ${response.error}`);        
+        logInDebugMode(`There was a problem creating the user ${USERNAME}. It might be existing, so please modify it on the executor bat file`);
+        logInDebugMode(`The http status is ${response.status}`);        
+        logInDebugMode(`The http error is ${response.error}`);        
     }
 
     let loginResponse = http.post(`${BASE_URL}/auth/token/login/`, 
@@ -424,10 +424,10 @@ export function setup()
 
     if (logInSuccessful)
     {
-        LogInDebugMode(`Logged in successfully with the token: ${authorizationToken}`); 
+        logInDebugMode(`Logged in successfully with the token: ${authorizationToken}`); 
     }
 
-    LogInDebugMode(`==========================SETUP ENDS==========================`)
+    logInDebugMode(`==========================SETUP ENDS==========================`)
 
     return authorizationToken; // this will be passed as parameter to all the exported functions
 }
