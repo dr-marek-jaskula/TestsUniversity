@@ -5,6 +5,11 @@ using Users.Api.Options;
 
 namespace Users.Api.Data;
 
+public interface ISqliteDbConnectionFactory
+{
+    Task<IDbConnection> CreateDbConnectionAsync();
+}
+
 public class SqliteDbConnectionFactory : ISqliteDbConnectionFactory
 {
     private readonly DbConnectionOptions _connectionOptions;
