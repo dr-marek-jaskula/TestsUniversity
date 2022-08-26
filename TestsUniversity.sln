@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customers.WebApp.Tests.UI",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Api", "src\Orders.Api\Orders.Api.csproj", "{5DFAB868-83F4-4D5C-92DA-7FD4B005B1CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Api.Tests.Unit", "test\Order.Api.Tests.Unit\Order.Api.Tests.Unit.csproj", "{B78AAA96-B6B3-4A6B-AE90-AE653EB7C854}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Api.Tests.Unit", "test\Order.Api.Tests.Unit\Orders.Api.Tests.Unit.csproj", "{B78AAA96-B6B3-4A6B-AE90-AE653EB7C854}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Load", "Load", "{A79F6835-6418-4BD3-BB71-FF994345E633}"
 	ProjectSection(SolutionItems) = preProject
