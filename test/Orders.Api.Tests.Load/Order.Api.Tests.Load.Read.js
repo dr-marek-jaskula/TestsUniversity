@@ -3,8 +3,6 @@ import { check, group, sleep } from 'k6';
 import { Counter, Trend } from 'k6/metrics';
 
 // Parameters & Constants
-const USERNAME =  `${RandomString(10)}@example.com`;
-const PASSWORD =  'fakepassword'; 
 const BASE_URL = 'https://localhost:7147';
 const DEBUG = true;
 
@@ -159,14 +157,6 @@ export let options =
         'http_req_duration{name:Read}': ['avg<500', 'max<1000']
     }
 };  
-
-function RandomString(length) 
-{
-    const charset = 'abcdefghijklmnopqrstuvwxyz';
-    let res = '';
-    while (length--) res += charset[Math.random() * charset.length | 0];
-    return res;
-}
 
 function GetRandom(min, max) 
 {
