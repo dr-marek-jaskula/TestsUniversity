@@ -5,7 +5,9 @@ Load testing is about testing the performance, stability, and stress points of t
 In this case, we will define different scenarios that will send multiple requests per second and examine the response time and other metrics.
 
 To run the test we run the application, open the terminal, navigate to the directory where the test file is present and then type:
-> k6 run \<fileName\>
+```cmd
+ k6 run \<fileName\>
+```
 
 ## Execution Types
 
