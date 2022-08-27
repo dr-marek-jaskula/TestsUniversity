@@ -16,11 +16,11 @@ var ReadTrend = new Trend('ReadTrend');
 
 const ExecutionType = 
 {
-    smoke:          'smoke', //It is a regular load test, configured for minimal load. Run a smoke test to check every if the script is ok and system does not throw any errors.
-    load:           'load', //Load Testing is a type of Performance Testing used to determine a system's behavior under both normal conditions.
-    stress:         'stress', //Stress Testing is a type of load testing used to determine the limits of the system. The purpose of this test is to verify the stability and reliability of the system under extreme conditions.
-    soak:           'soak', //Soak testing is concerned with reliability over a longer period of time.
-    spike:          'spike', //Test api when requests rapidly increses for a short period of time and then rapidly decreses to the previous request amount
+    smoke:          'smoke', 
+    load:           'load', 
+    stress:         'stress', 
+    soak:           'soak', 
+    spike:          'spike', 
     performance:    'performance' //This is my custom performance that that suits my performance testing requirements in a development stage
 }
 
@@ -36,11 +36,11 @@ switch(Execution)
 			ReadScenario: 
             {
                 exec: 'ReadTests',
-                executor: 'ramping-arrival-rate', //If you need your tests to not be affected by the system-under-test's performance, and would like to ramp the number of iterations up or down during specific periods of time.
-                startTime: '0s', //Time offset since the start of the test, at which point this scenario should begin execution.
-                startRate: 1, //Number of iterations to execute each second (timeUnit is "1s" by default)
-                preAllocatedVUs: 4, //Number of VUs to pre-allocate before test start to preserve runtime resources. We should have at least some
-                stages: //Array of objects that specify the target number of iterations to ramp up or down to.
+                executor: 'ramping-arrival-rate', 
+                startTime: '0s', 
+                startRate: 1, 
+                preAllocatedVUs: 4, 
+                stages: 
                 [
                     { duration: '30s', target: 1},
                     { duration: '30s', target: 2}

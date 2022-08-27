@@ -42,6 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Load", "Load", "{A79F6835-6
 	ProjectSection(SolutionItems) = preProject
 		test\Orders.Api.Tests.Load\multiScenarioTemplate.js = test\Orders.Api.Tests.Load\multiScenarioTemplate.js
 		test\Orders.Api.Tests.Load\Order.Api.Tests.Load.Read.js = test\Orders.Api.Tests.Load\Order.Api.Tests.Load.Read.js
+		test\Orders.Api.Tests.Load\TemplateDescription.md = test\Orders.Api.Tests.Load\TemplateDescription.md
 		test\Orders.Api.Tests.Load\testScript.js = test\Orders.Api.Tests.Load\testScript.js
 	EndProjectSection
 EndProject
