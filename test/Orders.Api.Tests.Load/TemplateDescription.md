@@ -86,11 +86,6 @@ docker-compose up -d influxdb grafana
 This result it running both influxdb and grafana in the detach mode (run in the background) - so two containers will run
 
 ```cmd
-docker-compose run -v $PWD/samples:/scripts k6 run /scripts/Order.Api.Tests.Load.Read.js
+docker-compose run -v $PWD/scripts:/scripts k6 run /scripts/Order.Api.Tests.Load.Read.js
 ```
-This runs the command "k6 run /scripts/Order.Api.Tests.Load.Read.js" in the volume "$PWD/samples:/scripts"
-
-Docker volums defining pattern
-```
--v <source>:<destination>
-```
+This runs the command "k6 run /scripts/Order.Api.Tests.Load.Read.js" in the volume "$PWD/scripts:/scripts"
