@@ -6,7 +6,7 @@ In this case, we will define different scenarios that will send multiple request
 
 To run the test we run the application, open the terminal, navigate to the directory where the test file is present and then type:
 ```cmd
- k6 run \<fileName\>
+ k6 run <fileName>
 ```
 
 ## Execution Types
