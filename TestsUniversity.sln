@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DCF89F9C-8CFA-4086-B24E-0ECACC76213A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3D9FD7F2-5EB9-4D64-A2D4-8D730564F387}"
+	ProjectSection(SolutionItems) = preProject
+		test\Orders.Api.Tests.Load\Scripts\testScript.js = test\Orders.Api.Tests.Load\Scripts\testScript.js
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9B59248-3C41-4F7D-AD82-FB99E7BBDC70}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,10 +43,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Api.Tests.Unit", "te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Load", "Load", "{A79F6835-6418-4BD3-BB71-FF994345E633}"
 	ProjectSection(SolutionItems) = preProject
-		test\Orders.Api.Tests.Load\multiScenarioTemplate.js = test\Orders.Api.Tests.Load\multiScenarioTemplate.js
-		test\Orders.Api.Tests.Load\Order.Api.Tests.Load.Read.js = test\Orders.Api.Tests.Load\Order.Api.Tests.Load.Read.js
 		test\Orders.Api.Tests.Load\TemplateDescription.md = test\Orders.Api.Tests.Load\TemplateDescription.md
-		test\Orders.Api.Tests.Load\testScript.js = test\Orders.Api.Tests.Load\testScript.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{C533C815-F344-4800-A718-8DC7701BCCA2}"
+	ProjectSection(SolutionItems) = preProject
+		test\Orders.Api.Tests.Load\multiScenarioTemplate.js = test\Orders.Api.Tests.Load\multiScenarioTemplate.js
+		test\Orders.Api.Tests.Load\Scripts\Order.Api.Tests.Load.Read.js = test\Orders.Api.Tests.Load\Scripts\Order.Api.Tests.Load.Read.js
+		test\Orders.Api.Tests.Load\Scripts\testScript.js = test\Orders.Api.Tests.Load\Scripts\testScript.js
 	EndProjectSection
 EndProject
 Global
@@ -111,6 +118,7 @@ Global
 		{5DFAB868-83F4-4D5C-92DA-7FD4B005B1CB} = {DCF89F9C-8CFA-4086-B24E-0ECACC76213A}
 		{B78AAA96-B6B3-4A6B-AE90-AE653EB7C854} = {08589731-96D1-4616-A073-78B7449BBEDB}
 		{A79F6835-6418-4BD3-BB71-FF994345E633} = {3D9FD7F2-5EB9-4D64-A2D4-8D730564F387}
+		{C533C815-F344-4800-A718-8DC7701BCCA2} = {A79F6835-6418-4BD3-BB71-FF994345E633}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA7FD966-CAA4-49B5-98C2-2977179B28C6}
