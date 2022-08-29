@@ -52,7 +52,7 @@ services:
       context: ../../.
       dockerfile: Dockerfile.Order.Api
     container_name: orderapi-container
-    image: orderapi-image
+    image: order-api-image
     networks:
       - db-net
       - k6
