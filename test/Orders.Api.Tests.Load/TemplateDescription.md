@@ -96,3 +96,17 @@ docker-compose run -v $PWD/scripts:/scripts k6 run /scripts/Order.Api.Tests.Load
 ```
 This runs the command "k6 run /scripts/Order.Api.Tests.Load.Read.js" in the scripts folder. 
 The "$PWD" is "current working directory" in Linux.
+
+## Grafana dashboards
+
+To reach the Grafana in the container, by default go to:
+```
+http://localhost:3000
+```
+
+Then, it is preferred to create a new dashboard, base on a well designed dashboard:
+- Go to dashboard
+- New -> Import
+- Pase ID "2587"
+
+The importent dashboard is [k6 Load Testing Results] (https://grafana.com/grafana/dashboards/2587-k6-load-testing-results/)

@@ -26,7 +26,7 @@ const ExecutionType =
 
 var ExecutionScenarios;
 //To execute a different test scenario: change the Exectution variable to one of the ExecutionTypes that are specified above
-var Execution = 'test';
+var Execution = 'performance';
 
 switch(Execution)
 {
@@ -174,7 +174,7 @@ export let options =
     thresholds: 
     {
         http_req_failed: ['rate<0.05'],   
-        'http_req_duration': ['p(95)<500', 'p(99)<1500'],
+        'http_req_duration': ['p(95)<600', 'p(99)<1500'],
         'http_req_duration{name:Read}': ['avg<500', 'max<1000']
     }
 };  
