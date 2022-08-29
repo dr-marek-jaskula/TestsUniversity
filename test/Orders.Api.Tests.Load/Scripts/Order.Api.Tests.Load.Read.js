@@ -3,7 +3,9 @@ import { check, group, sleep } from 'k6';
 import { Counter, Trend } from 'k6/metrics';
 
 // Parameters & Constants
+// const BASE_URL = 'https://localhost:7147';
 const BASE_URL = 'https://localhost:7147';
+// const BASE_URL = 'https://host.docker.internal:7147';
 const DEBUG = true;
 
 // Counters
@@ -19,12 +21,13 @@ const ExecutionType =
     stress:         'stress',
     soak:           'soak',
     spike:          'spike',
-    performance:    'performance'
+    performance:    'performance',
+    test:           'test'
 }
 
 var ExecutionScenarios;
 //To execute a different test scenario: change the Exectution variable to one of the ExecutionTypes that are specified above
-var Execution = 'performance';
+var Execution = 'test';
 
 switch(Execution)
 {
@@ -144,7 +147,26 @@ switch(Execution)
                 ]
             }
         }
-        break;        
+        break;
+    case ExecutionType.test:
+        ExecutionScenarios = 
+        {
+            ReadScenario: 
+            {
+                exec: 'ReadTests',
+                executor: 'ramping-arrival-rate',
+                startTime: '0s',
+                startRate: 1,
+                preAllocatedVUs: 20,
+                stages: 
+                [
+                    { duration: '1s', target: 10 },
+                    { duration: '1s', target: 10 },
+                    { duration: '1s', target: 0 }
+                ]
+            }
+        }
+        break;  
 }
 
 export let options =
