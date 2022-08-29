@@ -17,8 +17,6 @@ try
     builder.Services.AddDbContext<MyDbContext>(options => options
         .UseSqlServer(builder.Configuration.GetConnectionString("FromContainerToContainer")));
 
-    Console.WriteLine(builder.Configuration.GetConnectionString("FromContainerToContainer"));
-
     builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
     builder.Services.RegisterServices();
