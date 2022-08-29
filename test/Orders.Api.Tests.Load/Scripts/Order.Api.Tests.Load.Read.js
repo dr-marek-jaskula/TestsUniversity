@@ -4,8 +4,7 @@ import { Counter, Trend } from 'k6/metrics';
 
 // Parameters & Constants
 // const BASE_URL = 'https://localhost:7147';
-const BASE_URL = 'https://localhost:7147';
-// const BASE_URL = 'https://host.docker.internal:7147';
+const BASE_URL = 'http://api'; //remember is it http or https (what port is exposed: 80 or 443)
 const DEBUG = true;
 
 // Counters

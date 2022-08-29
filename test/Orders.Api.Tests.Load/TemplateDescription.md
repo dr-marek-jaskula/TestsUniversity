@@ -27,6 +27,12 @@ We distinguish:
 
 Execution is a selected execution type.
 
+We can also use two more as helpers:
+- performance
+	- Custom settings that fit our needs
+- test
+	- Just to examine the connection, for instance if the application, grafana and databases are in the docker containers
+
 ## Scenario
 
 Scenario is an guide how the requests should be send - in what amount and frequency.
