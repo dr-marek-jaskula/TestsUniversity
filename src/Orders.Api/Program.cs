@@ -15,7 +15,7 @@ try
     });
 
     builder.Services.AddDbContext<MyDbContext>(options => options
-        .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        .UseSqlServer(builder.Configuration.GetConnectionString("FromContainerToContainer")));
 
     builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -50,6 +50,12 @@ try
     });
 
     #endregion Configure HTTP Request Pipeline
+
+    app.MapGet("/hello", () =>
+    {
+        return "Hello.";
+    })
+    .WithName("HelloWorld");
 
     app.Run();
 }

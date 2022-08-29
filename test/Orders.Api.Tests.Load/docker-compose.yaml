@@ -2,7 +2,15 @@ version: '3.8'
 
 networks:
   k6:
+    name: k6-network
   grafana:
+    name: grafana-network
+  db-net:
+    name: db-network
+
+volumes:
+  dbdata:
+    name: mssql-loadtests-volume
 
 services:
   influxdb:
@@ -38,3 +46,32 @@ services:
       - K6_OUT=influxdb=http://influxdb:8086/k6
     volumes:
       - ./scripts:/scripts
+
+  api:
+    build:
+      context: ../../.
+      dockerfile: Dockerfile.Order.Api
+    container_name: orderapi-container
+    image: orderapi-image
+    networks:
+      - db-net
+      - k6
+    ports:
+      - "8000:80"
+    depends_on:
+      - "db"
+  
+  db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssword1
+      - MSSQL_PID=Express 
+    restart: unless-stopped
+    networks:
+      - db-net
+    ports:
+      - 1433:1433
+    volumes:
+      - dbdata:/var/opt/mssql

@@ -1,0 +1,53 @@
+	#Build stage
+
+#1. Get SDK image from Public Repository as a "build"
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
+#2. Set working directory to /app
+WORKDIR /app
+
+#3. Copy the .sln and .csproj file
+COPY ["TestsUniversity.sln", "."]
+COPY ["src/Orders.Api/Orders.Api.csproj", "./src/Orders.Api/"]
+
+#4. Restore dependencies
+
+WORKDIR /app/src/Orders.Api
+RUN dotnet restore
+
+WORKDIR /app
+
+#5. Copy all project files
+COPY ["src/Orders.Api/.", "./src/Orders.Api/"]
+
+WORKDIR /app/src/Orders.Api
+
+#6. Build Orders.Api project in the Release mode and set the build output to the /app/build directory
+RUN dotnet build "Orders.Api.csproj" -c Release -o /app/build
+
+	#Publish stage
+
+#1. From build image crated in the previous set, create a new image named "publish"
+FROM build AS publish
+
+#2. Publish the application (with no restore, becasue restore was done previously) and set the output directory to /app/publish
+RUN dotnet publish "Orders.Api.csproj" -c Release -o /app/publish --no-restore
+
+	#Final stage
+
+#1. Use aspnet image to create an final image (we would not use the sdk here, just what is enough to run the app)
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+
+#2. Set the name of the image owner (metadata)
+LABEL Name="dr-Marek-Jaskula"
+
+#3. Set working directory
+WORKDIR /app/src/Orders.Api
+ 
+#Ports are exposed in a docker-compose.yaml file
+
+#5. Copy from "publish" image the whole directory "/app/publish" to the current directory (which is "/app/Orders.Api")
+COPY --from=publish /app/publish .
+
+#6. Set the entrypoint of the container
+ENTRYPOINT ["dotnet", "Orders.Api.dll"]

@@ -77,7 +77,7 @@ The Docker compose file for this is present in the same folder.
 Remarks:
 We should use "influxdb:1.8" because it is free. If the newer 2.X version is also free (check it) use the newer version.
 
-Then, navigate to the folder in which we have the docker compose file (prevously run the app). 
+Then, navigate to the folder in which we have the docker compose file (previously run the app). 
 
 After that run:
 ```cmd
@@ -88,4 +88,5 @@ This result it running both influxdb and grafana in the detach mode (run in the 
 ```cmd
 docker-compose run -v $PWD/scripts:/scripts k6 run /scripts/Order.Api.Tests.Load.Read.js
 ```
-This runs the command "k6 run /scripts/Order.Api.Tests.Load.Read.js" in the volume "$PWD/scripts:/scripts"
+This runs the command "k6 run /scripts/Order.Api.Tests.Load.Read.js" in the scripts folder. 
+The "$PWD" is "current working directory" in Linux.
