@@ -109,4 +109,4 @@ Then, it is preferred to create a new dashboard, base on a well designed dashboa
 - New -> Import
 - Pase ID "2587"
 
-The importent dashboard is [k6 Load Testing Results] (https://grafana.com/grafana/dashboards/2587-k6-load-testing-results/)
+The importent dashboard is [k6 Load Testing Results](https://grafana.com/grafana/dashboards/2587-k6-load-testing-results/)
