@@ -1,5 +1,6 @@
 using CalculatorLibrary;
 using System.Collections;
+using Xunit;
 
 namespace TestingTechniques.Tests.Unit.Advance;
 
@@ -68,11 +69,24 @@ public class CalculatorTheoryTests
         // Assert
         actualResult.Should().Be(expectedResult);
     }
+    
+    //The best option is to use the class date with strongly typed test data
+    [Theory]
+    [ClassData(typeof(CalculatorSubtractStronglyTypedTestData))]
+    public void Subtract_ShouldSubtractTwoNumbers_WhenTheNumbersAreValidIntegers_StronglyTypeTestData(int firstNumber, int secondNumber, int expectedResult)
+    {
+        // Act
+        var actualResult = _sut.Subtract(firstNumber, secondNumber);
+
+        // Assert
+        actualResult.Should().Be(expectedResult);
+    }
 
     //3. Third approach is presented in "CalculatorTheoryFromFileTests"
 }
 
 //This class needs to implement "IEnumerable<object[]>" interface
+//Nevertheless, test data is not strongly typed using this approach
 public class CalculatorSubtractTestData : IEnumerable<object[]>
 {
     //The enumerator needs to have "yield return" as it is a enumerator
@@ -87,4 +101,19 @@ public class CalculatorSubtractTestData : IEnumerable<object[]>
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
+
+//The number of generic parameters must match the number of test arguments, and types must match. 
+//We can use complex types, not only the primitive ones, and we can make loops and other data manipulations to prepare fine data
+//This is considered to be the best theory data approach
+public class CalculatorSubtractStronglyTypedTestData : TheoryData<int, int, int>
+{
+    public CalculatorSubtractStronglyTypedTestData()
+    {
+        Add(5, 5, 0);
+        Add(-5, -5, 0);
+        Add(-15, -5, -10);
+        Add(15, 5, 10);
+        Add(5, 10, -5);
+    }
 }
